@@ -19,3 +19,8 @@ except Exception as e:
     print(e)
 
 st.title("Connected Successfully")
+
+name = st.text_input("Emri","Emri")
+
+if len(name) >= 3:
+    st.write(name)

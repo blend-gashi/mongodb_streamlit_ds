@@ -30,7 +30,7 @@ collection = db["usernames"]
 
 print("Inserted")
 
-name = st.text_input("Emri","Emri")
+name = st.text_input("Emri")
 
 if len(name) >= 3:
     collection.insert_one({

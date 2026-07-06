@@ -5,9 +5,6 @@ from pymongo.server_api import ServerApi
 uri = st.secrets["mongodb_srv"]
 client =  MongoClient(uri)
 
-
-uri = "mongodb+srv://pigob32585_db_user:<db_password>@cluster0.iuc6qbl.mongodb.net/?appName=Cluster0"
-
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
 
@@ -20,7 +17,24 @@ except Exception as e:
 
 st.title("Connected Successfully")
 
+# Client eshte streamlitMongodb, emri i tabelezes
+server = MongoClient(uri)
+server.admin.command('ping')
+db = server['name_tracker']
+collection = db["usernames"]
+
+db = client["name_tracker"]
+collection = db["usernames"]
+
+
+
+print("Inserted")
+
 name = st.text_input("Emri","Emri")
 
 if len(name) >= 3:
-    st.write(name)
+    collection.insert_one({
+    "name": name
+})
+else:
+    st.write("Name is too short")
